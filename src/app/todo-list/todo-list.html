@@ -1,0 +1,32 @@
+<h1>Todo List</h1>
+
+
+@if (isLoading) {
+<div class="loading">
+    <span>Loading todos...</span>
+</div>
+} @else if (errorMessage) {
+<div class="error">
+    <strong>Error:</strong> {{ errorMessage }}
+</div>
+} @else if (todos.length === 0) {
+<div class="no-todos">
+    <p>No todos found. Start by adding your first todo!</p>
+</div>
+} @else {
+<ul class="todo-list">
+    @for (todo of todos; track todo.id) {
+    <li class="todo-item" [class.completed]="todo.isCompleted">
+        <div class="todo-content">
+            <div class="todo-title">{{ todo.title }}</div>
+            <div class="todo-description">{{ todo.description }}</div>
+        </div>
+        <div class="todo-status">
+            <span class="status-badge" [class.completed]="todo.isCompleted" [class.pending]="!todo.isCompleted">
+                {{ todo.isCompleted ? 'Completed' : 'Pending' }}
+            </span>
+        </div>
+    </li>
+    }
+</ul>
+}
