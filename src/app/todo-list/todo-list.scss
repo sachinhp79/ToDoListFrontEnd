@@ -99,15 +99,40 @@ h1 {
                 border-radius: 20px;
                 font-size: 0.8rem;
                 font-weight: 500;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
 
                 &.completed {
                     background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
                     color: white;
+                    cursor: default;
                 }
 
                 &.pending {
                     background: linear-gradient(135deg, var(--pending-orange), #f97316);
                     color: white;
+                }
+
+                &.clickable {
+                    &:hover {
+                        filter: brightness(1.1);
+                        transform: scale(1.05);
+                    }
+
+                    &:active {
+                        transform: scale(0.98);
+                    }
+                }
+
+                &:disabled {
+                    cursor: default;
+
+                    &:hover {
+                        filter: none;
+                        transform: none;
+                    }
                 }
             }
         }

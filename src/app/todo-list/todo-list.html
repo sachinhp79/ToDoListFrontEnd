@@ -22,9 +22,17 @@
             <div class="todo-description">{{ todo.description }}</div>
         </div>
         <div class="todo-status">
-            <span class="status-badge" [class.completed]="todo.isCompleted" [class.pending]="!todo.isCompleted">
+            <!-- Test button to verify clicks work
+            <button class="test-btn" (click)="testClick(todo)"
+                style="margin-right: 10px; padding: 4px 8px; font-size: 12px;">
+                TEST
+            </button> -->
+
+            <button class="status-badge" [class.completed]="todo.isCompleted" [class.pending]="!todo.isCompleted"
+                [class.clickable]="!todo.isCompleted" (click)="markAsCompleted(todo)" [disabled]="todo.isCompleted"
+                title="{{todo.isCompleted ? 'Already completed' : 'Click to mark as completed'}}">
                 {{ todo.isCompleted ? 'Completed' : 'Pending' }}
-            </span>
+            </button>
         </div>
     </li>
     }

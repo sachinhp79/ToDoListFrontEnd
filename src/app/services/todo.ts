@@ -27,8 +27,17 @@ export class TodoService {
     return this.http.post<TodoModel>(`${this.apiUrl}/items`, todo);
   }
 
-  updateTodo(itemId: string, todo: TodoModel) {
-    return this.http.put<TodoModel>(`${this.apiUrl}/change-status/${itemId}`, todo);
+  updateTodo(todo: TodoModel) {
+    return this.http.put<TodoModel>(`${this.apiUrl}/change-status/${todo.id}`, todo);
+  }
+
+  changeStatus(itemId: string, isCompleted: boolean) {
+    const dto = {
+      itemId: itemId,
+      isCompleted: isCompleted
+    };
+    // Tell Angular to expect text response, not JSON
+    return this.http.put(`${this.apiUrl}/change-status`, dto, { responseType: 'text' });
   }
 
   deleteTodo(itemId: string) {
