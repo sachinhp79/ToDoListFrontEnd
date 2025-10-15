@@ -40,6 +40,12 @@ export class TodoList implements OnInit {
         this.todos = todos;
         this.isLoading = false;
 
+        if (todos.length === 0) {
+          this.errorMessage = 'No to-do items found.';
+        } else {
+          this.errorMessage = '';
+        }
+
         console.log('✅ fetchTodos() completed - UI should update now');
       },
       (error: unknown) => {
@@ -53,16 +59,6 @@ export class TodoList implements OnInit {
   onTodoAdded(newTodoItem: TodoModel): void {
     this.todos.push(newTodoItem); // ✅ Update list
   }
-
-  // testClick(todo: TodoModel): void {
-  //   console.log('🔥 TEST CLICK FIRED!', todo.title);
-  //   alert('Click event is working! Todo: ' + todo.title);
-  // }
-
-  // testMarkAsCompleted(todo: TodoModel): void {
-  //   console.log('🎯 testMarkAsCompleted called for todo:', todo.title, 'Current status:', todo.isCompleted);
-  //   alert('testMarkAsCompleted called! Todo: ' + todo.title + ', Completed: ' + todo.isCompleted);
-  // }
 
   markAsCompleted(todo: TodoModel): void {
     console.log('🎯 markAsCompleted called for todo:', todo.title, 'Current status:', todo.isCompleted);

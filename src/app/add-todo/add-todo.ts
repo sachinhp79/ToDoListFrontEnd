@@ -28,6 +28,7 @@ export class AddTodo {
   constructor(private todoService: TodoService) { }
 
   addTodoItem() {
+    debugger;
     // Clear previous messages
     this.clearMessages();
 
@@ -48,6 +49,7 @@ export class AddTodo {
 
     this.todoService.addTodo(todoItemToAdd).subscribe({
       next: (addedToDoItem: TodoModel) => {
+        debugger;
         this.todoItemAddedEventEmitter.emit(addedToDoItem);
         this.successMessage = 'Todo item added successfully!';
         this.isSubmitting = false;
