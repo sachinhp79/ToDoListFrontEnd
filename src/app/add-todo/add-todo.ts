@@ -51,8 +51,7 @@ export class AddTodo {
       next: (addedToDoItem: TodoModel) => {
         debugger;
         this.todoItemAddedEventEmitter.emit(addedToDoItem);
-        this.successMessage = 'Todo item added successfully!';
-        this.snackBar.open(`Todo item ${addedToDoItem.title} added successfully!`,
+        this.snackBar.open(`Todo item "${addedToDoItem.title}" added successfully!`,
           'Close', {
           duration: 3000,
           panelClass: ['todo-toast']
