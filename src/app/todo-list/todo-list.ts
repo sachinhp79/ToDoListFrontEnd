@@ -32,6 +32,7 @@ export class TodoList implements OnInit {
 
     this.todoService.getTodos().subscribe(
       (todos: TodoModel[]) => {
+        debugger;
         console.log('📥 Fetched todos from API:', todos);
         console.log('📋 First todo structure:', todos[0]);
         console.log('📊 Number of todos received:', todos.length);
@@ -39,12 +40,6 @@ export class TodoList implements OnInit {
 
         this.todos = todos;
         this.isLoading = false;
-
-        if (todos.length === 0) {
-          this.errorMessage = 'No to-do items found.';
-        } else {
-          this.errorMessage = '';
-        }
 
         console.log('✅ fetchTodos() completed - UI should update now');
       },

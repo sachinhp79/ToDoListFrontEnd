@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { TodoService } from '../services/todo';
 import { Todo as TodoModel } from '../models/todo.models';
 
@@ -25,10 +26,9 @@ export class AddTodo {
   @ViewChild('todoForm') todoForm!: NgForm;
   @Output() todoItemAddedEventEmitter = new EventEmitter<TodoModel>();
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private snackBar: MatSnackBar) { }
 
   addTodoItem() {
-    debugger;
     // Clear previous messages
     this.clearMessages();
 
@@ -52,6 +52,12 @@ export class AddTodo {
         debugger;
         this.todoItemAddedEventEmitter.emit(addedToDoItem);
         this.successMessage = 'Todo item added successfully!';
+        this.snackBar.open(`Todo item ${addedToDoItem.title} added successfully!`,
+          'Close', {
+          duration: 3000,
+          panelClass: ['todo-toast']
+        });
+
         this.isSubmitting = false;
 
         // Reset form data and validation state
