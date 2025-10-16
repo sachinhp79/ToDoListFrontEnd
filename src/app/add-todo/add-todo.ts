@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { TodoService } from '../services/todo';
+import { LoggerService } from '../services/logger-service';
 import { Todo as TodoModel } from '../models/todo.models';
 
 @Component({
@@ -26,7 +27,7 @@ export class AddTodo {
   @ViewChild('todoForm') todoForm!: NgForm;
   @Output() todoItemAddedEventEmitter = new EventEmitter<TodoModel>();
 
-  constructor(private todoService: TodoService, private snackBar: MatSnackBar) { }
+  constructor(private todoService: TodoService, private snackBar: MatSnackBar, private logger: LoggerService) { }
 
   addTodoItem() {
     // Clear previous messages
@@ -78,7 +79,7 @@ export class AddTodo {
         }, 3000);
       },
       error: (err: unknown) => {
-        console.error('Error adding todo item:', err);
+        this.logger.error('Error adding todo item:', err);
         this.errorMessage = 'Failed to add todo item. Please try again.';
         this.isSubmitting = false;
       }
