@@ -49,7 +49,6 @@ export class AddTodo {
 
     this.todoService.addTodo(todoItemToAdd).subscribe({
       next: (addedToDoItem: TodoModel) => {
-        debugger;
         this.todoItemAddedEventEmitter.emit(addedToDoItem);
         this.snackBar.open(`Todo item "${addedToDoItem.title}" added successfully!`,
           'Close', {

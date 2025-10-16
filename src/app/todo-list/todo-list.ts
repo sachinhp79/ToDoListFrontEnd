@@ -32,15 +32,9 @@ export class TodoList implements OnInit {
 
     this.todoService.getTodos().subscribe(
       (todos: TodoModel[]) => {
-        debugger;
         console.log('📥 Fetched todos from API:', todos);
-        console.log('📋 First todo structure:', todos[0]);
-        console.log('📊 Number of todos received:', todos.length);
-        console.log('🔍 Todos with completed status:', todos.map(t => ({ title: t.title, isCompleted: t.isCompleted })));
-
         this.todos = todos;
         this.isLoading = false;
-
         console.log('✅ fetchTodos() completed - UI should update now');
       },
       (error: unknown) => {
